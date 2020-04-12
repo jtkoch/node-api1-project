@@ -10,6 +10,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "watch": "nodemon server.js",
     "start": "node server.js"
   },
   "repository": "https://github.com/jtkoch/node-api1-project.git",

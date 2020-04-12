@@ -52,6 +52,10 @@ server.post("/users", (req, res) => {
     }) 
   }
 
+  const newUser = db.createUser({
+    name: req.body.name,
+    bio: req.body.bio,
+  })
   if (newUser) {
     res.json(newUser)
   } else {
@@ -59,11 +63,6 @@ server.post("/users", (req, res) => {
       errorMessage: "There was an error while saving the user to the database."
     })
   }
-
-  const newUser = db.createUser({
-    name: req.body.name,
-    bio: req.body.bio,
-  })
   res.status(201).json(newUser)
 })
 
@@ -107,24 +106,23 @@ server.put("/users/:id", (req, res) => {
 server.delete("/users/:id", (req, res) => {
   const user = db.getUserById(req.params.id)
 
-  if (user) {
-    db.deleteUser(user.id)
-    res.status(204).end()
-  } else {
-      res.status(404).json({
-        message: "The user with the specified ID does not exist.",
-    })  
-  }
+  if (!user) {
 
-  if (user) {
-    res.json(user)
+    res.status(404).json({
+    message: "The user with the specified ID does not exist.",
+    })
+  } 
+  if (user) {    
+    db.deleteUser(user.id)
+    res.status(200).json({
+      message: `User${req.params.id} has been deleted`
+    })
   } else {
     res.status(500).json({
       errorMessage: "The user could not be removed."
     })
   }
 })
-
 
 server.listen(5000, () => {
   console.log("server started at port 5000")
