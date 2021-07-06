@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "express": "^4.17.1",
+    "gitignore": "^0.6.0",
+    "node": "^13.12.0",
+    "node-scripts": "^1.0.6",
+    "nodemon": "^2.0.2"
+  },
+  "name": "node-api1-project",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "watch": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "repository": "https://github.com/jtkoch/node-api1-project.git",
+  "author": "Jensen Koch <jtkoch12@gmail.com>",
+  "license": "MIT"
+}
